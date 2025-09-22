@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74a7d4ada2eb36a48a2779863ed14711, type: 3}
+  m_Name: CoinAssetSO
+  m_EditorClassIdentifier: 
+  defaultMaterial: {fileID: 2100000, guid: cadc1731250000340945cefb8c852ceb, type: 2}
+  coinAssets:
+  - coinType: 0
+    material: {fileID: 2100000, guid: cadc1731250000340945cefb8c852ceb, type: 2}
+  - coinType: 1
+    material: {fileID: 2100000, guid: d9cd59b927fe28b4aa90f8a9d74e7250, type: 2}
+  - coinType: 2
+    material: {fileID: 2100000, guid: 96299088e57587a4f9fda92c89a2723e, type: 2}
+  - coinType: 3
+    material: {fileID: 2100000, guid: 4e090bb7d831ffc498f2980d19295eb7, type: 2}
+  - coinType: 4
+    material: {fileID: 2100000, guid: cd6e53fd4c2c04b4ab42f6c438712017, type: 2}
+  - coinType: 5
+    material: {fileID: 2100000, guid: 6a908ff096909d7438b42571093dfe52, type: 2}
+  - coinType: 6
+    material: {fileID: 2100000, guid: a99e86893af7ba9498ff32fa1f444a04, type: 2}
+  - coinType: 7
+    material: {fileID: 2100000, guid: 84ef17dd9c4b9e7479b33550412109f2, type: 2}
+  - coinType: 8
+    material: {fileID: 2100000, guid: f3e14344ee3523d479c13c51f407756a, type: 2}
+  - coinType: 9
+    material: {fileID: 2100000, guid: e240ae0b1f802bf4d98c5e5bbb238e84, type: 2}

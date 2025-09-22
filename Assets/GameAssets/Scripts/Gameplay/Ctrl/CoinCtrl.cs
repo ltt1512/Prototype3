@@ -2,17 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinCtrl : MonoBehaviour
+namespace Gameplay
 {
-    // Start is called before the first frame update
-    void Start()
+    public class CoinCtrl : BaseCtrl
     {
-        
-    }
+        [Header("Ref")]
+        public ViewCoin coinPrefab;
+        public float size = 0.5f;
+     
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+        #region public
+        public override void Init()
+        {
+        }
+
+        public override void Reset()
+        {
+        }
+
+        public override void StartGame()
+        {
+        }
+
+        public ViewCoin SpawnCoin(ViewTube viewTube, int id)
+        {
+            ViewCoin newCoin = Instantiate(coinPrefab, viewTube.coinParent);
+            newCoin.transform.localPosition = GetPosYByID(id);
+            return newCoin;
+        }
+
+        public Vector3 GetPosYByID(int id)
+        {
+            var pos = Vector3.zero;
+            pos.z += size * 3 - size * id;
+            return pos;
+        }
+
+      
+        #endregion
+
+        #region private
+
+
+        #endregion
     }
 }
