@@ -15,6 +15,7 @@ namespace Gameplay
         TubeCtrl tubeCtrl => GameManager.GetTubeCtrl;
         CoinCtrl coinCtrl => GameManager.GetCoinCtrl;
         LevelCtrl levelCtrl => GameManager.GetLevelCtrl;
+        GunCtrl gunCtrl => GameManager.GetGunCtrl;
         public ViewTube Init()
         {
             coins = new();
@@ -109,21 +110,13 @@ namespace Gameplay
             if (canMerge)
             {
                 //remove old coin
-                int nextCoinType = (int)coinType + 1;
-                var maxCoinType = Enum.GetValues(typeof(CoinType)).Length;
-                if (nextCoinType >= maxCoinType)
-                    nextCoinType = (int)coinType;
-                coinType = (CoinType)(nextCoinType);
-
                 foreach (var coin in coins)
                     Destroy(coin.gameObject);
 
                 coins.Clear();
-                //spawn new coin
-                var newCoin = coinCtrl.SpawnCoin(this, 0);
-                newCoin.Init().SetCoinType(coinType).SetOwner(this)
-                       .SetIdPos(0);
-                coins.Add(newCoin);
+
+                //gun add bullet
+                gunCtrl.Shot(coinType, 1); 
             }
         }
 

@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2669331137253691302}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45,3 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinAssetSO: {fileID: 11400000, guid: 22e5256be2e4fbf46ab1866029c54841, type: 2}
+  gunAssetSO: {fileID: 11400000, guid: 07a8e095871cf0940aefe55204e3b491, type: 2}
+  blockAssetSO: {fileID: 11400000, guid: d9182aef6de51a14bab93a17ad5d326c, type: 2}
