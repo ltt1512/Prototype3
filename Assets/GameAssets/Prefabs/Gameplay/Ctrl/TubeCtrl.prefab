@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 220552349795231955}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 0, z: 0}
+  m_LocalPosition: {x: -2.7, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -79,5 +79,7 @@ MonoBehaviour:
   tubePrefab: {fileID: -1678795474927119439, guid: 5f7c36243b754264280ccef9ba829ed7, type: 3}
   startTubePos: {fileID: 151594508354129143}
   grid: {x: 5, y: 0, z: 2}
-  cellSize: {x: 1, y: 0, z: 2}
+  cellSize: {x: 1.35, y: 0, z: 4.4}
+  maxCoinInTube: 4
   viewTubes: []
+  viewCoinSelects: []

@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: -5216773715174811958, guid: 41a3d1264e7ef8542bd3f479d9b4a4e5, type: 3}
-  viewCoins: []
+  size: 1

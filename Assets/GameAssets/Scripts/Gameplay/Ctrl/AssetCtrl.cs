@@ -23,10 +23,16 @@ namespace Gameplay
         {
         }
 
-        public Material GetCoinMaterial(CoinType coinType)
+        public Material GetCoinGlassMat(CoinType coinType)
         {
-            var asset = coinAssetSO.coinAssets.Find(x => x.coinType == coinType);
-            return asset?.material ?? coinAssetSO.defaultMaterial;
+            var asset = coinAssetSO.coinGlassAssets.Find(x => x.coinType == coinType);
+            return asset?.material ?? coinAssetSO.defaultGlassMaterial;
+        }
+
+        public Material GetCoinWaterMat(CoinType coinType)
+        {
+            var asset = coinAssetSO.coinWaterAssets.Find(x => x.coinType == coinType);
+            return asset?.material ?? coinAssetSO.defaultWaterMaterial;
         }
 
         public Material GetGunMaterial(CoinType coinType)

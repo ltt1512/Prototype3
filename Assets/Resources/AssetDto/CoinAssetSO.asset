@@ -12,25 +12,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a7d4ada2eb36a48a2779863ed14711, type: 3}
   m_Name: CoinAssetSO
   m_EditorClassIdentifier: 
-  defaultMaterial: {fileID: 2100000, guid: cadc1731250000340945cefb8c852ceb, type: 2}
-  coinAssets:
+  defaultGlassMaterial: {fileID: 2100000, guid: bba8972bd795ac64d8cb967c3830fdd5, type: 2}
+  defaultWaterMaterial: {fileID: 2100000, guid: e2e36c3e3520eca468b9ae2f81593731, type: 2}
+  coinGlassAssets:
   - coinType: 0
-    material: {fileID: 2100000, guid: cadc1731250000340945cefb8c852ceb, type: 2}
+    material: {fileID: 2100000, guid: bba8972bd795ac64d8cb967c3830fdd5, type: 2}
   - coinType: 1
-    material: {fileID: 2100000, guid: d9cd59b927fe28b4aa90f8a9d74e7250, type: 2}
+    material: {fileID: 2100000, guid: 52cbb7e9a9ad3c143bf42bd916f02f2b, type: 2}
   - coinType: 2
-    material: {fileID: 2100000, guid: 96299088e57587a4f9fda92c89a2723e, type: 2}
+    material: {fileID: 2100000, guid: dafa1d64c80daff42bcbbd15e51baab8, type: 2}
   - coinType: 3
-    material: {fileID: 2100000, guid: 4e090bb7d831ffc498f2980d19295eb7, type: 2}
+    material: {fileID: 2100000, guid: 32e3e17c7f39688499d77f0158e1ae15, type: 2}
   - coinType: 4
-    material: {fileID: 2100000, guid: cd6e53fd4c2c04b4ab42f6c438712017, type: 2}
+    material: {fileID: 2100000, guid: bba8972bd795ac64d8cb967c3830fdd5, type: 2}
   - coinType: 5
-    material: {fileID: 2100000, guid: 6a908ff096909d7438b42571093dfe52, type: 2}
+    material: {fileID: 2100000, guid: 52cbb7e9a9ad3c143bf42bd916f02f2b, type: 2}
   - coinType: 6
-    material: {fileID: 2100000, guid: a99e86893af7ba9498ff32fa1f444a04, type: 2}
+    material: {fileID: 2100000, guid: dafa1d64c80daff42bcbbd15e51baab8, type: 2}
   - coinType: 7
-    material: {fileID: 2100000, guid: 84ef17dd9c4b9e7479b33550412109f2, type: 2}
+    material: {fileID: 2100000, guid: 32e3e17c7f39688499d77f0158e1ae15, type: 2}
   - coinType: 8
-    material: {fileID: 2100000, guid: f3e14344ee3523d479c13c51f407756a, type: 2}
+    material: {fileID: 2100000, guid: bba8972bd795ac64d8cb967c3830fdd5, type: 2}
   - coinType: 9
-    material: {fileID: 2100000, guid: e240ae0b1f802bf4d98c5e5bbb238e84, type: 2}
+    material: {fileID: 2100000, guid: 52cbb7e9a9ad3c143bf42bd916f02f2b, type: 2}
+  coinWaterAssets:
+  - coinType: 0
+    material: {fileID: 2100000, guid: e2e36c3e3520eca468b9ae2f81593731, type: 2}
+  - coinType: 1
+    material: {fileID: 2100000, guid: 14ab90dcb3df6cc4a89c2a4a05a0fea3, type: 2}
+  - coinType: 2
+    material: {fileID: 2100000, guid: 0ccaf5d88921add4ea0fb80430871cfb, type: 2}
+  - coinType: 3
+    material: {fileID: 2100000, guid: 9bdbc29c9a50e2d4f8093fd37046ffa5, type: 2}
+  - coinType: 4
+    material: {fileID: 2100000, guid: e2e36c3e3520eca468b9ae2f81593731, type: 2}
+  - coinType: 5
+    material: {fileID: 2100000, guid: 14ab90dcb3df6cc4a89c2a4a05a0fea3, type: 2}
+  - coinType: 6
+    material: {fileID: 2100000, guid: 0ccaf5d88921add4ea0fb80430871cfb, type: 2}
+  - coinType: 7
+    material: {fileID: 2100000, guid: 9bdbc29c9a50e2d4f8093fd37046ffa5, type: 2}
+  - coinType: 8
+    material: {fileID: 2100000, guid: e2e36c3e3520eca468b9ae2f81593731, type: 2}
+  - coinType: 9
+    material: {fileID: 2100000, guid: 14ab90dcb3df6cc4a89c2a4a05a0fea3, type: 2}

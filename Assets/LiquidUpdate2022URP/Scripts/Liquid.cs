@@ -139,6 +139,11 @@ public class Liquid : MonoBehaviour
         {
             pos = worldPos - transform.position - new Vector3(0, fillAmount, 0);
         }
+
+        var curPosY = pos.y;
+        var curPosZ = pos.z;
+        pos.y = curPosZ;
+        pos.z = curPosY;
         rend.sharedMaterial.SetVector("_FillAmount", pos);
     }
 
@@ -190,5 +195,11 @@ public class Liquid : MonoBehaviour
             }
         }
         return lowestVert.y;
+    }
+
+    public void ForceX(float minX,float maxX)
+    {
+        wobbleAmountToAddX = Random.Range(minX, maxX);
+        wobbleAmountToAddZ = Random.Range(minX, maxX);
     }
 }

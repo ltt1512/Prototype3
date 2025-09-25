@@ -138,7 +138,7 @@ namespace Gameplay
                     {
                         var newCoin = coinCtrl.SpawnCoin(this, lastIds);
                         var coinType = levelCtrl.CurLevel.GetRandom();
-                        newCoin.Init().SetCoinType(coinType).SetOwner(this).SetIdPos(coins.Count);
+                        newCoin.Init().SetCoinType(coinType).SetOwner(this).SetIdPos(coins.Count).AnimAppear();
                         coins.Add(newCoin);
                         lastIds++;
                     }

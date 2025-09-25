@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Gameplay
@@ -7,14 +7,23 @@ namespace Gameplay
     public class ViewCoin : MonoBehaviour
     {
         [Header("Ref")]
-        public MeshRenderer meshRenderer;
-
+        public MeshRenderer glassRender;
+        public MeshRenderer waterRender;
+        public Liquid liquip;
+        public float forceMinX = 0.5f;
+        public float forceMaxX = 0.7f;
         [Header("Runtime")]
         public CoinType type;
         public ViewTube Owner;
         public int idPos;
         AssetCtrl assetCtrl => GameManager.GetAssetCtrl;
         TubeCtrl tubeCtrl => GameManager.GetTubeCtrl;
+        CoinCtrl coinCtrl => GameManager.GetCoinCtrl;   
+
+        private void OnDestroy()
+        {
+            DOTween.Kill(this);
+        }
         public ViewCoin Init()
         {
             return this;
@@ -45,10 +54,21 @@ namespace Gameplay
             return this;
         }
 
+        public void AnimToPos(Vector3 pos, int offset)
+        {
+            transform.DOLocalJump(pos, 2, 5, 0.2f).SetTarget(this).SetDelay(offset * 0.05f);
+            liquip.ForceX(forceMinX, forceMaxX);
+            transform.DOScale(1, 0.1f);
+        }
+
         public void SetCoinMaterial()
         {
-            var material = assetCtrl.GetCoinMaterial(type);
-            meshRenderer.sharedMaterial = material;
+            var material = assetCtrl.GetCoinGlassMat(type);
+            
+            glassRender.material =new Material(material);
+
+            var mat = assetCtrl.GetCoinWaterMat(type);
+            waterRender.material = new Material(mat);   
         }
 
         private void OnMouseDown()
@@ -75,6 +95,8 @@ namespace Gameplay
             var curPos = transform.localPosition;
             curPos.y += 0.2f;
             transform.localPosition = curPos;
+            transform.DOScale(1.2f, 0.1f);
+            liquip.ForceX(forceMinX, forceMaxX);
         }
 
         public void AnimDeselect()
@@ -82,6 +104,24 @@ namespace Gameplay
             var curPos = transform.localPosition;
             curPos.y = 0;
             transform.localPosition = curPos;
+            liquip.ForceX(forceMinX, forceMaxX);
+            transform.DOScale(1, 0.1f);
+        }
+
+        public async void AnimAppear()
+        {
+            var sign = Random.value >= 0.5f ? 1 : -1;
+            var randomPosX = Random.Range(5,6) * sign;
+            var pos = Vector3.zero;
+            pos.x = randomPosX;
+            transform.localPosition = pos;
+            var seq = DOTween.Sequence(this);
+            seq.Append(transform.DOLocalJump(coinCtrl.GetPosYByID(idPos), 4, 1, 0.2f).SetTarget(this));
+            seq.Append(transform.DOScale(1.2f, 0.05f).SetLoops(2, LoopType.Yoyo).SetTarget(this));
+            //var seq = DOTween.Sequence();
+            //seq.Append(transform.DOScale(1.2f, 0.15f).SetDelay(Random.Range(0.06f, 0.2f)));
+            //seq.Append(transform.DOScale(1, 0.1f));
+            liquip.ForceX(forceMinX, forceMaxX);
         }
     }
 }

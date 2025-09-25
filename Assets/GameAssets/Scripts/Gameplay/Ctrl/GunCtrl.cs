@@ -80,6 +80,9 @@ namespace Gameplay
                 if (cancel) return;
                 gun.Shoot();
                 blockCtrl.Shot(coinType);
+                cancel = await UniTask.Delay(300, cancellationToken: cts.Token).SuppressCancellationThrow();
+                if (cancel) return;
+                blockCtrl.Fill();
             }
         }
         #endregion

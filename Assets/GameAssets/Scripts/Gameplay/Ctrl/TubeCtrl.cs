@@ -69,11 +69,12 @@ namespace Gameplay
             if (isTubeEmpty)
             {
                 var firstPosId = 0;
+                
                 foreach (var coin in viewCoinSelects)
                 {
                     coin.transform.SetParent(tubeTarget.coinParent);
                     Vector3 pos = coinCtrl.GetPosYByID(firstPosId);
-                    coin.SetLocalPos(pos);
+                    coin.AnimToPos(pos, firstPosId);
                     coin.SetOwner(tubeTarget).SetIdPos(firstPosId);
                     tubeTarget.AddCoin(coin);
                     tubeSelect.coins.Remove(coin);
@@ -108,20 +109,29 @@ namespace Gameplay
                 return;
             }
 
+            int startId = tubeTarget.coins.Count;
             int lastPosId = tubeTarget.coins[^1].idPos;
             lastPosId++;
+
+            var lstViewCoint = new List<ViewCoin>();
+
             for (int i = viewCoinSelects.Count - 1; i >= 0; --i)
             {
-                var coin = viewCoinSelects[i];
+                lstViewCoint.Add(viewCoinSelects[i]);
+                spaceLeft--;
+                if (spaceLeft <= 0) break;
+            }
+            lstViewCoint.Reverse();
+            int offset = 0;
+            foreach(var coin in lstViewCoint)
+            {
                 coin.transform.SetParent(tubeTarget.coinParent);
                 Vector3 pos = coinCtrl.GetPosYByID(lastPosId);
-                coin.SetLocalPos(pos);
+                coin.AnimToPos(pos, offset++);
                 coin.SetOwner(tubeTarget).SetIdPos(lastPosId);
                 tubeTarget.AddCoin(coin);
                 tubeSelect.coins.Remove(coin);
                 lastPosId++;
-                spaceLeft--;
-                if (spaceLeft <= 0) break;
             }
             //get number of empty tube
             foreach (var coin in viewCoinSelects)

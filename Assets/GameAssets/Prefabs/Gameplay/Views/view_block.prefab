@@ -82,7 +82,10 @@ MonoBehaviour:
   coinType: 0
   blockRenderer: {fileID: 4575173491389343206}
   posCast: {fileID: 5573395483127555831}
-  Paths: []
+  Path:
+    blocks: []
+  gridX: 0
+  gridY: 0
 --- !u!65 &3159012464072034627
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -196,7 +199,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8a189593c7145624caf2df930d57fc2e, type: 2}
+  - {fileID: 2100000, guid: 8bd9280871c91f2429ab4f1c2a3cad29, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
