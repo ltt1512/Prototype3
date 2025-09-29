@@ -63,7 +63,7 @@ Material:
     - _QueueControl: 1
     - _QueueOffset: 0
     - _Rim_Power: 5
-    - _WobbleX: -0
+    - _WobbleX: 0
     - _WobbleZ: 0
     m_Colors:
     - Color_12DEDFED: {r: 0.2850213, g: 0.990566, b: 0.7492778, a: 1}
