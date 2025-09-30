@@ -116,7 +116,7 @@ namespace Gameplay
                 coins.Clear();
 
                 //gun add bullet
-                gunCtrl.Shot(coinType, 1); 
+                gunCtrl.AddBullet(coinType);
             }
         }
 

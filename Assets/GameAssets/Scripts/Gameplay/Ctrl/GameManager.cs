@@ -15,6 +15,7 @@ namespace Gameplay
         public TubeCtrl tubeCtrl { get; set; }
         public GunCtrl gunCtrl { get; set; }
         public BlockCtrl blockCtrl { get; set; }
+        public BulletCtrl bulletCtrl { get; set; }
         private void Awake()
         {
             AddListener();
@@ -28,6 +29,8 @@ namespace Gameplay
             tubeCtrl = baseCtrls.Find(ctrl => ctrl is TubeCtrl) as TubeCtrl;
             gunCtrl = baseCtrls.Find(ctrl => ctrl is GunCtrl) as GunCtrl;
             blockCtrl = baseCtrls.Find(ctrl => ctrl is BlockCtrl) as BlockCtrl;
+            bulletCtrl = baseCtrls.Find(ctrl => ctrl is BulletCtrl) as BulletCtrl;
+
             Init();
         }
 
@@ -59,6 +62,7 @@ namespace Gameplay
 
         void Update()
         {
+            gunCtrl.OnUpdate();
         }
 
         public void StartGame()
@@ -83,5 +87,6 @@ namespace Gameplay
         public static AssetCtrl GetAssetCtrl => Instance.assetCtrl;
         public static GunCtrl GetGunCtrl => Instance.gunCtrl;
         public static BlockCtrl GetBlockCtrl => Instance.blockCtrl;
+        public static BulletCtrl GetBulletCtrl => Instance.bulletCtrl;
     }
 }

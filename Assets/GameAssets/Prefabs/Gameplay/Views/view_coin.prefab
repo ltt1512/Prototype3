@@ -82,7 +82,8 @@ MonoBehaviour:
   glassRender: {fileID: 5744362444823190028}
   waterRender: {fileID: 4322662066423247213}
   liquip: {fileID: 4831588769791828351}
-  forceX: 1
+  forceMinX: 0.3
+  forceMaxX: 0.8
   type: 0
   Owner: {fileID: 0}
   idPos: 0

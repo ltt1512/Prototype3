@@ -55,7 +55,7 @@ MonoBehaviour:
   m_ShadowTransparentReceive: 1
   m_RenderingMode: 0
   m_DepthPrimingMode: 0
-  m_CopyDepthMode: 1
+  m_CopyDepthMode: 0
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 1
 --- !u!114 &7391332603254748547
@@ -89,6 +89,43 @@ MonoBehaviour:
     generateReflection: 1
     reflection: 0.2
     generateRefraction: 1
+    transparency: 1
+    absorption: 5
+    refraction: 0.01
+    refractionDownsample: 1
+    generateFoam: 1
+    foamDownsample: 1
+--- !u!114 &7567912662436654166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cf33ee50a97148328dbba3785c7865f, type: 3}
+  m_Name: ObiFluidRendererFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    blendSource: 5
+    blendDestination: 10
+    particleBlendSource: 2
+    particleBlendDestination: 0
+    particleZWrite: 0
+    thicknessCutoff: 1.08
+    thicknessDownsample: 1
+    generateSurface: 0
+    blurRadius: 0.0182
+    surfaceDownsample: 1
+    lighting: 0
+    smoothness: 0.8
+    metalness: 0
+    ambientMultiplier: 1
+    generateReflection: 0
+    reflection: 0.2
+    generateRefraction: 0
     transparency: 1
     absorption: 5
     refraction: 0.01

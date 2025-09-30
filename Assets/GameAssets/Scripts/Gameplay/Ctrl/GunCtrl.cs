@@ -1,8 +1,6 @@
 using Cysharp.Threading.Tasks;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Gameplay
@@ -18,11 +16,17 @@ namespace Gameplay
         public List<ViewGun> viewGuns = new();
         LevelDataSO curLevel => GameManager.GetLevelCtrl.CurLevel;
         BlockCtrl blockCtrl => GameManager.GetBlockCtrl;
+        BulletCtrl bulletCtrl => GameManager.GetBulletCtrl;
         CancellationTokenSource cts = new();
+        bool isShooting = false;
+        float cTime;
+        float timeShot = 0.2f;
         #region public
         public override void Init()
         {
+            isShooting = false;
             cts = new();
+            cTime = timeShot;
             ClearAllGun();
             SetStartPos();
             SpawnGun();
@@ -36,6 +40,18 @@ namespace Gameplay
         {
             cts.Cancel();
             cts.Dispose();
+        }
+
+        public override void OnUpdate()
+        {
+            if (!isShooting)
+            {
+                cTime += Time.deltaTime;
+                if (cTime >= timeShot)
+                {
+                    Shot();
+                }
+            }
         }
 
         public void SpawnGun()
@@ -70,19 +86,47 @@ namespace Gameplay
             gunStartPos.localPosition = curPos;
         }
 
-        public async void Shot(CoinType coinType, int count = 1)
+        public void AddBullet(CoinType coinType, int count = 1)
         {
             var gun = viewGuns.Find(x => x.coinType == coinType);
-            if (gun != null)
+            if (gun == null) return;
+            gun.AddBullet(count);
+        }
+
+        public void Shot()
+        {
+
+            var gunHaveBullets = viewGuns.FindAll(x => x.bulletCount > 0);
+            if (gunHaveBullets.Count > 0)
             {
-                gun.AddBullet(count);
-                var cancel = await UniTask.Delay(300, cancellationToken:cts.Token).SuppressCancellationThrow();
-                if (cancel) return;
-                gun.Shoot();
-                blockCtrl.Shot(coinType);
-                cancel = await UniTask.Delay(300, cancellationToken: cts.Token).SuppressCancellationThrow();
-                if (cancel) return;
-                blockCtrl.Fill();
+                foreach (var gun in gunHaveBullets)
+                {
+                    var rs = blockCtrl.Shot(gun.coinType);
+                    if (rs.Count > 0)
+                    {
+                        isShooting = true;
+                        var gunPos = gun.transform.position;
+                        gun.Shoot();
+                        bulletCtrl.Shoot(gunPos, rs, async () =>
+                        {
+                            await UniTask.Delay(200);
+                            blockCtrl.Fill();
+                            isShooting = false;
+                            cTime = 0;
+                        },
+                        (block) =>
+                        {
+                            blockCtrl.gridBlocks[block.gridX, block.gridY] = null;
+                            Destroy(block.gameObject);
+                        });
+                        //foreach (var block in rs)
+                        //{
+                        //    blockCtrl.gridBlocks[block.gridX, block.gridY] = null;
+                        //    Destroy(block.gameObject);
+                        //}
+                        break;
+                    }
+                }
             }
         }
         #endregion

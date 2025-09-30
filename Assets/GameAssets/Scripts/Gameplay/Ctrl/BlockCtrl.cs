@@ -1,10 +1,6 @@
-using Doozy.Editor.Common.ScriptableObjects;
-using JetBrains.Annotations;
 using Sirenix.OdinInspector;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Unity.Collections.AllocatorManager;
 
 namespace Gameplay
 {
@@ -19,7 +15,7 @@ namespace Gameplay
 
         [Header("Runtime")]
         // public List<ViewBlock> viewBlocks = new();
-        ViewBlock[,] gridBlocks;
+        public ViewBlock[,] gridBlocks;
         LevelDataSO curLevel => GameManager.GetLevelCtrl.CurLevel;
         public override void Init()
         {
@@ -80,7 +76,7 @@ namespace Gameplay
             gridBlocks = null;
         }
 
-        public void Shot(CoinType type)
+        public List<ViewBlock> Shot(CoinType type)
         {
             var lstFistRow = new List<ViewBlock>();
             for (int x = 0; x < grid.x; x++)
@@ -90,14 +86,15 @@ namespace Gameplay
             }
 
             var firstBlock = lstFistRow.Find(x => x.coinType == type);
-            if (firstBlock == null) return;
+            if (firstBlock == null) return new();
 
             var blocks = firstBlock.FindPaths().blocks;
-            foreach (var block in blocks)
-            {
-                gridBlocks[block.gridX, block.gridY] = null;
-                Destroy(block.gameObject);
-            }
+            //foreach (var block in blocks)
+            //{
+            //    gridBlocks[block.gridX, block.gridY] = null;
+            //    Destroy(block.gameObject);
+            //}
+            return blocks;
         }
         [Button]
         public void Fill()

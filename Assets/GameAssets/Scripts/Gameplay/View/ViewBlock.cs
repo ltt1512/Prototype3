@@ -135,7 +135,7 @@ namespace Gameplay
         private ViewBlock CastBlock(Vector3 pos, Vector3 dir)
         {
             var layer = LayerMask.GetMask("Block");
-            RaycastHit[] hits = Physics.RaycastAll(pos, dir, 0.5f, layer);
+            RaycastHit[] hits = Physics.RaycastAll(pos, dir, 0.6f, layer);
             foreach (var hit in hits)
             {
                 var block = hit.collider.GetComponent<ViewBlock>();

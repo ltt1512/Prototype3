@@ -4,7 +4,7 @@ using Doozy.Runtime.UIManager.Components;
 using Doozy.Runtime.UIManager.Input;
 using UnityEngine;
 
-namespace Gamepplay.UI
+namespace Gameplay.UI
 {
     public class ViewSettings : MonoBehaviour
     {

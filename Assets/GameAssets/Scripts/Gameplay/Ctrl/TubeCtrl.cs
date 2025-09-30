@@ -39,6 +39,9 @@ namespace Gameplay
         private void OnEventMerge(EventMerge merge)
         {
             MergeTube();
+            foreach (var coin in viewCoinSelects)
+                coin.AnimDeselect();
+            viewCoinSelects.Clear();
         }
 
         private void OnEventDeal(EventDeal deal)

@@ -56,7 +56,7 @@ namespace Gameplay
 
         public void AnimToPos(Vector3 pos, int offset)
         {
-            transform.DOLocalJump(pos, 2, 5, 0.2f).SetTarget(this).SetDelay(offset * 0.05f);
+            transform.DOLocalJump(pos, 5, 1, 0.2f).SetTarget(this).SetDelay(offset * 0.05f);
             liquip.ForceX(forceMinX, forceMaxX);
             transform.DOScale(1, 0.1f);
         }
@@ -95,7 +95,7 @@ namespace Gameplay
             var curPos = transform.localPosition;
             curPos.y += 0.2f;
             transform.localPosition = curPos;
-            transform.DOScale(1.2f, 0.1f);
+            transform.DOScale(1.3f, 0.1f).SetEase(Ease.OutBack);
             liquip.ForceX(forceMinX, forceMaxX);
         }
 
@@ -108,7 +108,7 @@ namespace Gameplay
             transform.DOScale(1, 0.1f);
         }
 
-        public async void AnimAppear()
+        public void AnimAppear()
         {
             var sign = Random.value >= 0.5f ? 1 : -1;
             var randomPosX = Random.Range(5,6) * sign;
