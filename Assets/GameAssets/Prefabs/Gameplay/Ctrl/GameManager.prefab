@@ -206,6 +206,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2936803270801457099, guid: daf606a9847706e41b0b57cca5720ea5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3393253628680104573, guid: daf606a9847706e41b0b57cca5720ea5, type: 3}
+      propertyPath: grid.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3393253628680104573, guid: daf606a9847706e41b0b57cca5720ea5, type: 3}
+      propertyPath: cellSize.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3393253628680104573, guid: daf606a9847706e41b0b57cca5720ea5, type: 3}
+      propertyPath: cellSize.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3393253628680104573, guid: daf606a9847706e41b0b57cca5720ea5, type: 3}
+      propertyPath: cellSize.z
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4615504450603347907, guid: daf606a9847706e41b0b57cca5720ea5, type: 3}
       propertyPath: m_Name
       value: BlockCtrl
@@ -213,8 +233,146 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 302653937995186201, guid: daf606a9847706e41b0b57cca5720ea5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 444257354895377812}
+    - targetCorrespondingSourceObject: {fileID: 302653937995186201, guid: daf606a9847706e41b0b57cca5720ea5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3458310951318692719}
   m_SourcePrefab: {fileID: 100100000, guid: daf606a9847706e41b0b57cca5720ea5, type: 3}
+--- !u!1 &1493313049292926369 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 302653937995186201, guid: daf606a9847706e41b0b57cca5720ea5, type: 3}
+  m_PrefabInstance: {fileID: 1191886449744342456}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &444257354895377812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493313049292926369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d174fab52f0c4b8399f25d5c3ea524c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  simulateWhenInvisible: 1
+  m_Backend: 1
+  parameters:
+    mode: 0
+    interpolation: 0
+    gravity: {x: 0, y: -9.81, z: 0}
+    damping: 0
+    maxAnisotropy: 3
+    sleepThreshold: 0.0001
+    collisionMargin: 0.02
+    maxDepenetration: 10
+    continuousCollisionDetection: 1
+    shockPropagation: 0
+    surfaceCollisionIterations: 8
+    surfaceCollisionTolerance: 0.005
+  gravity: {x: 0, y: 0, z: 0}
+  gravitySpace: 1
+  worldLinearInertiaScale: 0
+  worldAngularInertiaScale: 0
+  distanceConstraintParameters:
+    evaluationOrder: 1
+    iterations: 2
+    SORFactor: 2
+    enabled: 1
+  bendingConstraintParameters:
+    evaluationOrder: 1
+    iterations: 2
+    SORFactor: 2
+    enabled: 1
+  particleCollisionConstraintParameters:
+    evaluationOrder: 0
+    iterations: 1
+    SORFactor: 1
+    enabled: 0
+  particleFrictionConstraintParameters:
+    evaluationOrder: 1
+    iterations: 1
+    SORFactor: 1
+    enabled: 0
+  collisionConstraintParameters:
+    evaluationOrder: 0
+    iterations: 1
+    SORFactor: 1
+    enabled: 0
+  frictionConstraintParameters:
+    evaluationOrder: 1
+    iterations: 1
+    SORFactor: 1
+    enabled: 0
+  skinConstraintParameters:
+    evaluationOrder: 0
+    iterations: 1
+    SORFactor: 1
+    enabled: 0
+  volumeConstraintParameters:
+    evaluationOrder: 1
+    iterations: 1
+    SORFactor: 1
+    enabled: 0
+  shapeMatchingConstraintParameters:
+    evaluationOrder: 1
+    iterations: 1
+    SORFactor: 1
+    enabled: 0
+  tetherConstraintParameters:
+    evaluationOrder: 1
+    iterations: 1
+    SORFactor: 1
+    enabled: 0
+  pinConstraintParameters:
+    evaluationOrder: 1
+    iterations: 1
+    SORFactor: 1
+    enabled: 0
+  stitchConstraintParameters:
+    evaluationOrder: 1
+    iterations: 1
+    SORFactor: 1
+    enabled: 0
+  densityConstraintParameters:
+    evaluationOrder: 1
+    iterations: 1
+    SORFactor: 1
+    enabled: 0
+  stretchShearConstraintParameters:
+    evaluationOrder: 0
+    iterations: 1
+    SORFactor: 1
+    enabled: 0
+  bendTwistConstraintParameters:
+    evaluationOrder: 0
+    iterations: 1
+    SORFactor: 1
+    enabled: 0
+  chainConstraintParameters:
+    evaluationOrder: 0
+    iterations: 1
+    SORFactor: 1
+    enabled: 0
+--- !u!114 &3458310951318692719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493313049292926369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434d88f9b3534406382ff56c0e74bd9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  solvers:
+  - {fileID: 444257354895377812}
+  deltaSmoothing: 0.95
+  substeps: 4
 --- !u!4 &3875549764778632930 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2684947555387067226, guid: daf606a9847706e41b0b57cca5720ea5, type: 3}
@@ -232,6 +390,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoinCtrl
       objectReference: {fileID: 0}
+    - target: {fileID: 6730502047033061139, guid: 0c9d0d20816bca24cb54f801829b8416, type: 3}
+      propertyPath: bigCoinPrefab
+      value: 
+      objectReference: {fileID: 6769123885873926281, guid: 8a381734cc9a2bb4fb32d153abf8e509, type: 3}
     - target: {fileID: 8577525617028393703, guid: 0c9d0d20816bca24cb54f801829b8416, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -290,6 +452,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 530637948151146824}
     m_Modifications:
+    - target: {fileID: 151594508354129143, guid: 9867570307dcb5441b605f7f9df8bba5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 151594508354129143, guid: 9867570307dcb5441b605f7f9df8bba5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5272849656315800791, guid: 9867570307dcb5441b605f7f9df8bba5, type: 3}
       propertyPath: m_Name
       value: TubeCtrl
@@ -334,6 +504,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8492747877338242124, guid: 9867570307dcb5441b605f7f9df8bba5, type: 3}
+      propertyPath: cellSize.x
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8492747877338242124, guid: 9867570307dcb5441b605f7f9df8bba5, type: 3}
+      propertyPath: cellSize.z
+      value: 4.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -355,6 +533,10 @@ PrefabInstance:
     - target: {fileID: 1655195911314116209, guid: 2cc2bdf27e40384488af6553b25e10fc, type: 3}
       propertyPath: m_Name
       value: GunCtrl
+      objectReference: {fileID: 0}
+    - target: {fileID: 1781366015640360338, guid: 2cc2bdf27e40384488af6553b25e10fc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10.5
       objectReference: {fileID: 0}
     - target: {fileID: 9067408779416073543, guid: 2cc2bdf27e40384488af6553b25e10fc, type: 3}
       propertyPath: m_LocalPosition.x

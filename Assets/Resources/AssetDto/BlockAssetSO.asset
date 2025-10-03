@@ -12,25 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ffcd620a319c8241a793d925285df57, type: 3}
   m_Name: BlockAssetSO
   m_EditorClassIdentifier: 
-  defaultMaterial: {fileID: 2100000, guid: 3405c538ff0b2704887cba4729cef76d, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: 56cef5d03864e5a4890ef8398e620999, type: 2}
   blockAssets:
   - coinType: 0
-    material: {fileID: 2100000, guid: 3405c538ff0b2704887cba4729cef76d, type: 2}
+    material: {fileID: 2100000, guid: 56cef5d03864e5a4890ef8398e620999, type: 2}
   - coinType: 1
-    material: {fileID: 2100000, guid: 96bbc35ac7d169644ae79f57aee6cd8f, type: 2}
+    material: {fileID: 2100000, guid: c68c06f57cd67714782d1845705af3be, type: 2}
   - coinType: 2
-    material: {fileID: 2100000, guid: 2a6a9064141d4d74cb429eca47adbb01, type: 2}
+    material: {fileID: 2100000, guid: 5936f860864b80c43adc31b07bbc4da3, type: 2}
   - coinType: 3
-    material: {fileID: 2100000, guid: 86b97617712adf643945e691972b402d, type: 2}
+    material: {fileID: 2100000, guid: bb224da914cdf5745acd252d1e534c8b, type: 2}
   - coinType: 4
-    material: {fileID: 2100000, guid: d96be510f15806e43b34282519fc8016, type: 2}
+    material: {fileID: 2100000, guid: 56cef5d03864e5a4890ef8398e620999, type: 2}
   - coinType: 5
-    material: {fileID: 2100000, guid: 7167965c7c45b4a4b93cf35a6a4461ce, type: 2}
+    material: {fileID: 2100000, guid: c68c06f57cd67714782d1845705af3be, type: 2}
   - coinType: 6
-    material: {fileID: 2100000, guid: 57970fb97317bfb419235376f58d213f, type: 2}
+    material: {fileID: 2100000, guid: 5936f860864b80c43adc31b07bbc4da3, type: 2}
   - coinType: 7
-    material: {fileID: 2100000, guid: 509b77856f9079d44a55e454716cb69a, type: 2}
+    material: {fileID: 2100000, guid: bb224da914cdf5745acd252d1e534c8b, type: 2}
   - coinType: 8
-    material: {fileID: 2100000, guid: b88079ff2f997124383f590086250111, type: 2}
+    material: {fileID: 2100000, guid: 56cef5d03864e5a4890ef8398e620999, type: 2}
   - coinType: 9
-    material: {fileID: 2100000, guid: a50755735da71764c99df3608ebc6a68, type: 2}
+    material: {fileID: 2100000, guid: c68c06f57cd67714782d1845705af3be, type: 2}

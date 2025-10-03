@@ -1,4 +1,6 @@
+using DG.Tweening;
 using Doozy.Runtime.Common;
+using Obi;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,11 +19,14 @@ namespace Gameplay
 
         [Header("Ref")]
         public CoinType coinType;
-        public Renderer blockRenderer;
+        public List<Renderer> flowerRenderers;
         public Transform posCast;
         public BlockPath Path;
         public int gridX;
         public int gridY;
+        public List<ObiCloth> cloths;
+        public List<ObiClothRenderer> clothRenderers;
+        public Transform parent;
         AssetCtrl assetCtrl => GameManager.GetAssetCtrl;
         public ViewBlock Init()
         {
@@ -43,17 +48,85 @@ namespace Gameplay
             return this;
         }
 
+        public ViewBlock AnimShow(float timeScale, float timeRotate)
+        {
+            var curRot = parent.eulerAngles;
+            curRot.y += 180;
+            var sq = DOTween.Sequence();
+            float originScale = 1.5f;
+            var originPos = parent.localPosition;
+            var localPos = parent.localPosition;
+            localPos.y += 6f;
+            localPos.x -= 1f;
+            parent.localPosition = localPos;
+            foreach (var c in cloths)
+            {
+                c.enabled = true;
+                c.AddTorque(new Vector3(0, 0, 100), ForceMode.VelocityChange);
+            }
+            sq.Append(parent.DORotate(curRot, 0.75f, RotateMode.FastBeyond360).SetEase(Ease.Linear));
+            sq.Join(parent.DOLocalMove(originPos, 0.4f).OnComplete(()=>
+            {
+
+            }));
+            sq.Join(DOVirtual.Float(originScale, 2f, 0.3f, (v) =>
+            {
+                foreach (var c in cloths)
+                    c.stretchingScale = v;
+            }).SetLoops(2, LoopType.Yoyo));
+            sq.AppendInterval(1f);
+            sq.AppendCallback(() =>
+            {
+                foreach (var c in cloths)
+                    c.enabled = false;
+            });
+            return this;
+        }
+
+        public void ActiveObi(bool isActive)
+        {
+            foreach (var cloth in cloths)
+            {
+                cloth.enabled = isActive;
+            }
+        }
+
         public void SetMaterial(Material material)
         {
-            blockRenderer.sharedMaterial = material;
+            foreach (var r in flowerRenderers)
+            {
+                r.sharedMaterial = material;
+            }
         }
 
         public void UpdatePos(float sizeX, float sizeY)
         {
+            var pos = GetPos(sizeX, sizeY);
+            transform.localPosition = pos;
+        }
+
+        public void UpdatePosByAnim(float sizeX, float sizeY)
+        {
+            var pos = GetPos(sizeX, sizeY);
+            transform.DOLocalMove(pos, 0.3f);
+            foreach (var c in cloths)
+            {
+                c.enabled = true;
+                c.AddTorque(new Vector3(0, 0, Random.Range(40,60)), ForceMode.VelocityChange);
+            }
+            DOVirtual.DelayedCall(0.75f, () =>
+            {
+                foreach (var c in cloths)
+                    c.enabled = false;
+            });
+        }
+
+        public Vector3 GetPos(float sizeX, float sizeY)
+        {
             var pos = Vector3.zero;
             pos.x += gridX * sizeX;
             pos.z += gridY * sizeY;
-            transform.localPosition = pos;
+            return pos; 
         }
 
 
@@ -135,7 +208,7 @@ namespace Gameplay
         private ViewBlock CastBlock(Vector3 pos, Vector3 dir)
         {
             var layer = LayerMask.GetMask("Block");
-            RaycastHit[] hits = Physics.RaycastAll(pos, dir, 0.6f, layer);
+            RaycastHit[] hits = Physics.RaycastAll(pos, dir, 1.1f, layer);
             foreach (var hit in hits)
             {
                 var block = hit.collider.GetComponent<ViewBlock>();

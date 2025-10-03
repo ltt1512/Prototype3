@@ -123,5 +123,13 @@ namespace Gameplay
             //seq.Append(transform.DOScale(1, 0.1f));
             liquip.ForceX(forceMinX, forceMaxX);
         }
+
+        public void AnimDestroy(Vector3 pos)
+        {
+            transform.DOMove(pos, 0.2f).SetEase(Ease.InBack).SetTarget(this).OnComplete(()=>
+            {
+                Destroy(gameObject);    
+            });
+        }
     }
 }

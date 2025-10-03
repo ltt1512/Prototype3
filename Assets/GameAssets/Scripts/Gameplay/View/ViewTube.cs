@@ -106,17 +106,19 @@ namespace Gameplay
                 if (coin.type == coinType)
                     total++;
             }
-            bool canMerge = total >= tubeCtrl.maxCoinInTube;    
-            if (canMerge)
+            bool canMerge = total >= tubeCtrl.maxCoinInTube; 
+            bool haveGun = gunCtrl.viewGuns.Find(x => x.IsEmpty()) != null;
+            if (canMerge && haveGun)
             {
+                var firstCoin = coins[0];   
                 //remove old coin
                 foreach (var coin in coins)
-                    Destroy(coin.gameObject);
-
+                    coin.AnimDestroy(firstCoin.transform.position);
                 coins.Clear();
 
+                var bigCoin = coinCtrl.SpawnBigCoin(coinType, firstCoin.transform.position);
                 //gun add bullet
-                gunCtrl.AddBullet(coinType);
+                gunCtrl.FillBullet(coinType, bigCoin);
             }
         }
 

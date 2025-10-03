@@ -8,7 +8,7 @@ using Gameplay;
 using StansAssets.Foundation.Patterns;
 using UnityEngine;
 
-namespace Gamepplay.UI
+namespace Gameplay.UI
 {
     public class ViewMainmenu : MonoBehaviour
     {

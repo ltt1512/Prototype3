@@ -7,7 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Gamepplay.UI
+namespace Gameplay.UI
 {
     [RequireComponent(typeof(UIView))]
     public class ViewAnimation : MonoBehaviour

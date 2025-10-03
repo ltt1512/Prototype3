@@ -54,7 +54,7 @@ Material:
     - _Distortion: 0.36
     - _FillAmount: 0.41
     - _Float: 0.57
-    - _FoamWidth: 0.076
+    - _FoamWidth: 0.06
     - _Foam_Smoothness: 0
     - _Frequency: 3
     - _NormalDistortion: 0.78
@@ -63,17 +63,17 @@ Material:
     - _QueueControl: 1
     - _QueueOffset: 0
     - _Rim_Power: 5
-    - _WobbleX: -3e-45
-    - _WobbleZ: 0
+    - _WobbleX: -0.0000012114406
+    - _WobbleZ: -0.0000012114406
     m_Colors:
     - Color_12DEDFED: {r: 0.2850213, g: 0.990566, b: 0.7492778, a: 1}
     - Color_1B2A4228: {r: 0, g: 0.8207547, b: 0.2961154, a: 1}
     - Color_E9C3FC1D: {r: 0, g: 0.6946828, b: 0.764151, a: 1}
-    - _BottomColor: {r: 0.45618716, g: 0.15779635, b: 0.9292453, a: 1}
+    - _BottomColor: {r: 0.84687346, g: 0.2015563, b: 0.93011117, a: 1}
     - _Color: {r: 1, g: 0.9009434, b: 0.9009434, a: 1}
-    - _FoamColor: {r: 0.5266542, g: 0.24056602, b: 1, a: 1}
+    - _FoamColor: {r: 0.71756476, g: 0.5471698, b: 1, a: 1}
     - _Rim_Color: {r: 0.14477262, g: 0.17176121, b: 0.754717, a: 1}
-    - _TopColor: {r: 0.37784493, g: 0.13866146, b: 0.7735849, a: 1}
+    - _TopColor: {r: 0.94727635, g: 0.5330188, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &1446115623325762900
 MonoBehaviour:

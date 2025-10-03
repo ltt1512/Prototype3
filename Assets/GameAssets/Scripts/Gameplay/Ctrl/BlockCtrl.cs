@@ -1,6 +1,9 @@
+using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
+using static Unity.Collections.AllocatorManager;
 
 namespace Gameplay
 {
@@ -32,7 +35,7 @@ namespace Gameplay
         {
         }
 
-        public void SpawnBlock()
+        public async void SpawnBlock()
         {
             gridBlocks = new ViewBlock[grid.x, grid.z];
             var sizeX = cellSize.x + offset;
@@ -44,7 +47,11 @@ namespace Gameplay
                     var block = Instantiate(viewBlock, blockStartPos);
                     var coinType = curLevel.GetRandom();
                     block.Init().SetCoinType(coinType).SetGrid(x, z).UpdatePos(sizeX, sizeZ);
+                    block.ActiveObi(false);
+                    block.AnimShow(0.2f, 0.5f);
                     gridBlocks[x, z] = block;
+                    await UniTask.Delay(100);
+
                 }
             }
         }
@@ -130,7 +137,7 @@ namespace Gameplay
                 foreach(var block in blocks)
                 {
                     block.gridY = newId;
-                    block.UpdatePos(sizeX, sizeZ);
+                    block.UpdatePosByAnim(sizeX, sizeZ);
                     gridBlocks[id, newId] = block;
                     newId++;
                 }
@@ -141,6 +148,8 @@ namespace Gameplay
                     var newBlock = Instantiate(viewBlock, blockStartPos);
                     var coinType = curLevel.GetRandom();
                     newBlock.Init().SetCoinType(coinType).SetGrid(id, newId).UpdatePos(sizeX, sizeZ);
+                    newBlock.ActiveObi(false);
+                    newBlock.AnimShow(0.2f, 0.5f);
                     gridBlocks[id, newId] = newBlock;
                     newId++;
                 }

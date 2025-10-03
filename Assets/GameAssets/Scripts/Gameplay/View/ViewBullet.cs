@@ -24,7 +24,6 @@ namespace Gameplay
         public void Shoot(List<ViewBlock> blocks, Action onDoneAll, Action<ViewBlock> onDoneBlock)
         {
             var sq = DOTween.Sequence(this);
-            bool isFirst = true;
             Debug.Log("count " + blocks.Count);
             for(int i = 0; i < blocks.Count; i++) 
             {  
@@ -32,17 +31,16 @@ namespace Gameplay
                 var pos = block.transform.position;
                 pos.y += 0.4f;
                 pos.z += 0.4f;
-                var duratin = isFirst ? 0.5f : 0.3f;
                 bool isLast = i == blocks.Count - 1;
-                sq.Append(transform.DOJump(pos, 2, 1, duratin).SetDelay(0.1f).SetTarget(this).OnComplete(()=>
+                sq.Append(transform.DOJump(pos, 2, 1, 0.3f).SetDelay(0.1f).SetTarget(this).OnComplete(()=>
                 {
                     onDoneBlock?.Invoke(block);
                     if(isLast)
                     {
                         onDoneAll?.Invoke();
+                        Destroy(gameObject);    
                     }
                 }));
-                isFirst = false;
             }
         }
     }

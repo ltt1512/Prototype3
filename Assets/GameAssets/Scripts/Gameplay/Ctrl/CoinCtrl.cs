@@ -8,6 +8,7 @@ namespace Gameplay
     {
         [Header("Ref")]
         public ViewCoin coinPrefab;
+        public ViewBigCoin bigCoinPrefab;
         public float size = 0.5f;
      
 
@@ -39,7 +40,16 @@ namespace Gameplay
             return pos;
         }
 
-      
+        public ViewBigCoin SpawnBigCoin(CoinType coinType, Vector3 pos)
+        {
+            ViewBigCoin newCoin = Instantiate(bigCoinPrefab, pos, Quaternion.identity, transform);
+            newCoin.SetCoinType(coinType);  
+            newCoin.AnimInit();
+
+            return newCoin;
+        }
+
+
         #endregion
 
         #region private

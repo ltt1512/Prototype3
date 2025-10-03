@@ -4,7 +4,7 @@ using Doozy.Runtime.UIManager.Input;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Gamepplay.UI
+namespace Gameplay.UI
 {
     public class ViewIngame : MonoBehaviour
     {

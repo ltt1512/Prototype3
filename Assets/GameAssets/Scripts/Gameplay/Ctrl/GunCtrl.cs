@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace Gameplay
         public ViewGun viewGun;
         public float gunSize = 1f;
         public float offset = 0.3f;
+        public int lenght = 6;
         [Header("Runtime")]
         public List<ViewGun> viewGuns = new();
         LevelDataSO curLevel => GameManager.GetLevelCtrl.CurLevel;
@@ -20,7 +22,7 @@ namespace Gameplay
         CancellationTokenSource cts = new();
         bool isShooting = false;
         float cTime;
-        float timeShot = 0.2f;
+        float timeShot = 0.5f;
         #region public
         public override void Init()
         {
@@ -56,12 +58,12 @@ namespace Gameplay
 
         public void SpawnGun()
         {
-            var lenght = curLevel.coinTypes.Count;
+            
             for (int i = 0; i < lenght; i++)
             {
-                var coinType = curLevel.coinTypes[i];
+               // var coinType = curLevel.coinTypes[i];
                 var gun = Instantiate(viewGun, gunStartPos);
-                gun.Init().SetCoinType(coinType);
+                gun.Init();
                 var size = gunSize + offset;
                 var pos = Vector3.zero;
                 pos.x += i * size;
@@ -79,24 +81,22 @@ namespace Gameplay
 
         public void SetStartPos()
         {
-            var lenght = curLevel.coinTypes.Count;
             var curPos = gunStartPos.localPosition;
             var size = gunSize + offset;
             curPos.x = -(lenght * size / 2f) + size / 2f;
             gunStartPos.localPosition = curPos;
         }
 
-        public void AddBullet(CoinType coinType, int count = 1)
+        public void FillBullet(CoinType coinType, ViewBigCoin viewBigCoin)
         {
-            var gun = viewGuns.Find(x => x.coinType == coinType);
+            var gun = viewGuns.Find(x => x.IsEmpty());
             if (gun == null) return;
-            gun.AddBullet(count);
+            gun.FillBullet(coinType, viewBigCoin);
         }
 
-        public void Shot()
+        public async void Shot()
         {
-
-            var gunHaveBullets = viewGuns.FindAll(x => x.bulletCount > 0);
+            var gunHaveBullets = viewGuns.FindAll(x => x.isFullBullet);
             if (gunHaveBullets.Count > 0)
             {
                 foreach (var gun in gunHaveBullets)
@@ -105,8 +105,14 @@ namespace Gameplay
                     if (rs.Count > 0)
                     {
                         isShooting = true;
-                        var gunPos = gun.transform.position;
-                        gun.Shoot();
+                        var fisrtBlock = rs[0]; 
+                        var dir = (fisrtBlock.transform.position - gun.gunPos.position).normalized;
+
+                        float eulerY = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+                        gun.transform.DORotate(new Vector3(0, eulerY, 0), 0.2f);
+                        await UniTask.Delay(200);
+                        var gunPos = gun.gunPos.position;
+                        gun.Shoot(dir);
                         bulletCtrl.Shoot(gunPos, rs, async () =>
                         {
                             await UniTask.Delay(200);
@@ -119,11 +125,6 @@ namespace Gameplay
                             blockCtrl.gridBlocks[block.gridX, block.gridY] = null;
                             Destroy(block.gameObject);
                         });
-                        //foreach (var block in rs)
-                        //{
-                        //    blockCtrl.gridBlocks[block.gridX, block.gridY] = null;
-                        //    Destroy(block.gameObject);
-                        //}
                         break;
                     }
                 }
