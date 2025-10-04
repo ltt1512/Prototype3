@@ -56,12 +56,18 @@ namespace Gameplay
             }
         }
 
+        public void ResetShoot()
+        {
+            isShooting = false;
+            cTime = 0;
+        }
+
         public void SpawnGun()
         {
-            
+
             for (int i = 0; i < lenght; i++)
             {
-               // var coinType = curLevel.coinTypes[i];
+                // var coinType = curLevel.coinTypes[i];
                 var gun = Instantiate(viewGun, gunStartPos);
                 gun.Init();
                 var size = gunSize + offset;
@@ -102,30 +108,27 @@ namespace Gameplay
                 foreach (var gun in gunHaveBullets)
                 {
                     var rs = blockCtrl.Shot(gun.coinType);
+
                     if (rs.Count > 0)
                     {
+                        foreach (var block in rs)
+                            block.isTargeted = true;
                         isShooting = true;
-                        var fisrtBlock = rs[0]; 
+                        var fisrtBlock = rs[0];
                         var dir = (fisrtBlock.transform.position - gun.gunPos.position).normalized;
-
                         float eulerY = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
                         gun.transform.DORotate(new Vector3(0, eulerY, 0), 0.2f);
                         await UniTask.Delay(200);
                         var gunPos = gun.gunPos.position;
                         gun.Shoot(dir);
-                        bulletCtrl.Shoot(gunPos, rs, async () =>
-                        {
-                            await UniTask.Delay(200);
-                            blockCtrl.Fill();
-                            isShooting = false;
-                            cTime = 0;
-                        },
+                        bulletCtrl.Shoot(gunPos, rs,
                         (block) =>
                         {
                             blockCtrl.gridBlocks[block.gridX, block.gridY] = null;
                             Destroy(block.gameObject);
                         });
-                        break;
+                        blockCtrl.canFill = true;
+                        //break;
                     }
                 }
             }

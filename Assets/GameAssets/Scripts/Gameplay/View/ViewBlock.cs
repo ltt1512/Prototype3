@@ -28,8 +28,10 @@ namespace Gameplay
         public List<ObiClothRenderer> clothRenderers;
         public Transform parent;
         AssetCtrl assetCtrl => GameManager.GetAssetCtrl;
+        public bool isTargeted = false;
         public ViewBlock Init()
         {
+            isTargeted = false;
             return this;
         }
 
@@ -179,7 +181,7 @@ namespace Gameplay
                     foreach (var dir in directions)
                     {
                         var block = CastBlock(lastBlock.posCast.position, dir);
-                        if (block != null && !path.blocks.Contains(block))
+                        if (block != null && !path.blocks.Contains(block) && !block.isTargeted)
                             blocks.Add(block);
                     }
 

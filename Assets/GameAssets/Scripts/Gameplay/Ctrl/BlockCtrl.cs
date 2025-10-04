@@ -20,8 +20,12 @@ namespace Gameplay
         // public List<ViewBlock> viewBlocks = new();
         public ViewBlock[,] gridBlocks;
         LevelDataSO curLevel => GameManager.GetLevelCtrl.CurLevel;
+        BulletCtrl bulletCtrl => GameManager.GetBulletCtrl;
+        GunCtrl gunCtrl => GameManager.GetGunCtrl;
+        public bool canFill = false;
         public override void Init()
         {
+            canFill = false;
             ClearAllBlock();
             SetBlockStartPos();
             SpawnBlock();
@@ -33,6 +37,16 @@ namespace Gameplay
 
         public override void StartGame()
         {
+        }
+
+        override public void OnUpdate()
+        {
+            if (canFill && bulletCtrl.bullets.Count <= 0)
+            {
+                Fill();
+                canFill = false;
+                gunCtrl.ResetShoot();   
+            }
         }
 
         public async void SpawnBlock()
@@ -88,7 +102,7 @@ namespace Gameplay
             var lstFistRow = new List<ViewBlock>();
             for (int x = 0; x < grid.x; x++)
             {
-                if (gridBlocks[x, 0] != null)
+                if (gridBlocks[x, 0] != null && !gridBlocks[x, 0].isTargeted)
                     lstFistRow.Add(gridBlocks[x, 0]);
             }
 

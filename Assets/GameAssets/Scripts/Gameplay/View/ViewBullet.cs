@@ -7,7 +7,7 @@ namespace Gameplay
 {
     public class ViewBullet : MonoBehaviour
     {
-
+        BulletCtrl bulletCtrl => GameManager.GetBulletCtrl;
         private void Awake()
         {
             
@@ -21,7 +21,7 @@ namespace Gameplay
             return this;
         }    
 
-        public void Shoot(List<ViewBlock> blocks, Action onDoneAll, Action<ViewBlock> onDoneBlock)
+        public void Shoot(List<ViewBlock> blocks,Action<ViewBlock> onDoneBlock)
         {
             var sq = DOTween.Sequence(this);
             Debug.Log("count " + blocks.Count);
@@ -37,7 +37,7 @@ namespace Gameplay
                     onDoneBlock?.Invoke(block);
                     if(isLast)
                     {
-                        onDoneAll?.Invoke();
+                        bulletCtrl.bullets.Remove(this);
                         Destroy(gameObject);    
                     }
                 }));

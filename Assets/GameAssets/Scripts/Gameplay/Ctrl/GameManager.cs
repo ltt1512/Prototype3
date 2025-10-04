@@ -63,6 +63,7 @@ namespace Gameplay
         void Update()
         {
             gunCtrl.OnUpdate();
+            blockCtrl.OnUpdate();
         }
 
         public void StartGame()
